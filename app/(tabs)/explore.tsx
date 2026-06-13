@@ -6,6 +6,7 @@ import { useCallback } from 'react';
 import { TouchableOpacity } from 'react-native';
 import { Fontisto } from '@expo/vector-icons';
 import { Modal } from 'react-native';
+import { Alert } from 'react-native';
 
 export default function ExploreScreen() {
   console.log("EXPLORE SCREEN LOADED");
@@ -31,6 +32,7 @@ export default function ExploreScreen() {
   console.log(records.length);
 
   const deleteRecord = async (id: number) => {
+    
   const updatedRecords = records.filter(
     (record) => record.id !== id
   );
@@ -77,13 +79,39 @@ export default function ExploreScreen() {
       Total Records: {records.length}
     </Text>
   </View>
-  {
-    [...records]
+  {records.length === 0 ? (
+  <View
+    style={{
+      alignItems: 'center',
+      marginTop: 100,
+    }}
+  >
+    <Text
+      style={{
+        color: '#8B949E',
+        fontSize: 18,
+      }}
+    >
+      No records yet
+    </Text>
+
+    <Text
+      style={{
+        color: '#6E7681',
+        marginTop: 8,
+      }}
+    >
+      Capture a photo to get started
+    </Text>
+  </View>
+) : (
+  [...records]
   .sort(
     (a: any, b: any) =>
       new Date(b.timestamp).getTime() -
       new Date(a.timestamp).getTime()
   )
+  
   .map((record: any) => (
   
   <View
@@ -128,7 +156,21 @@ export default function ExploreScreen() {
       Lng: {record.longitude.toFixed(6)}
     </Text>
     <TouchableOpacity
-    onPress={() => deleteRecord(record.id)}
+    onPress={() => Alert.alert(
+  "Delete Record",
+  "Are you sure you want to delete this record?",
+  [
+    {
+      text: "Cancel",
+      style: "cancel",
+    },
+    {
+      text: "Delete",
+      style: "destructive",
+      onPress: () => deleteRecord(record.id),
+    },
+  ]
+)}
     >
       <Fontisto
       name="trash"
@@ -138,7 +180,8 @@ export default function ExploreScreen() {
       </TouchableOpacity>
       </View>
       </View>
-    ))}
+    )))}
+  
 
 <Modal
   visible={selectedImage !== null}

@@ -2,6 +2,7 @@ import { Fontisto } from '@expo/vector-icons';
 import { CameraCapturedPicture } from 'expo-camera';
 import React from 'react'
 import { TouchableOpacity, SafeAreaView, Image, StyleSheet, View } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 const PhotosPreview = ({
     photo,
@@ -22,10 +23,10 @@ const PhotosPreview = ({
 
         <View style={styles.buttonContainer}>
             <TouchableOpacity style={styles.button} onPress={handleRetakePhoto}>
-                <Fontisto name='trash' size={36} color='black' />
+                <Ionicons name="trash-outline" size={36} color="black"/>
             </TouchableOpacity>
             <TouchableOpacity style={styles.button} onPress={handleSavePhoto}>
-                <Fontisto name='check' size={34} color='black' />
+                <Ionicons name="checkmark-outline" size={36} color="black"/>
             </TouchableOpacity>
         </View>
     </SafeAreaView>
@@ -54,7 +55,7 @@ const styles = StyleSheet.create({
     buttonContainer: {
         marginTop: '4%',
         flexDirection: 'row',
-        justifyContent: "center",
+        justifyContent: "space-evenly",
         width: '100%',
     },
     button: {
