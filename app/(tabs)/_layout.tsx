@@ -20,21 +20,21 @@ export default function TabLayout() {
         name="index"
         options={{
           title: 'Home',
-          tabBarIcon: ({ color, size }) => (<Ionicons name="time-outline" size={size} color={color}/>),
+          tabBarIcon: ({ color, size }) => (<Ionicons name="home-outline" size={size} color={color}/>),
         }}
       />
       <Tabs.Screen
         name="explore"
         options={{
           title: 'History',
-          tabBarIcon: ({ color, size }) => (<Ionicons name="camera-outline" size={size} color={color}/>),
+          tabBarIcon: ({ color, size }) => (<Ionicons name="time-outline" size={size} color={color}/>),
         }}
       />
       <Tabs.Screen
         name="camera"
         options={{
           title: 'Camera',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="camera" color={color} />,
+          tabBarIcon: ({ color, size }) => (<Ionicons name="camera-outline" size={size} color={color}/>),
         }}
       />
     </Tabs>
